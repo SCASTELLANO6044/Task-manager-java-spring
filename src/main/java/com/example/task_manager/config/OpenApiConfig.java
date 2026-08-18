@@ -89,14 +89,14 @@ public class OpenApiConfig {
                 """;
 
         return new OpenAPI()
-                .info(new Info().title("idp Api")
+                .info(new Info().title("Task Manager API")
                         .description(descriptionConfig)
                         .version("1.0.0"));
     }
 
     @Bean
     GroupedOpenApi answer(){
-        return GroupedOpenApi.builder().group("idp Api").pathsToMatch("/**").build();
+        return GroupedOpenApi.builder().group("Task Manager API").pathsToMatch("/**").build();
     }
 
 }
