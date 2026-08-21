@@ -37,4 +37,15 @@ public class TaskServiceImpl implements TaskService {
     public void deleteTask(int id) {
         taskRepository.deleteById(id);
     }
+
+    @Override
+    public Boolean updateTask(TaskRequestServerDTO taskRequestServerDTO) {
+        TaskEntity taskEntity = taskRepository.findByName(taskRequestServerDTO.getName());
+        if (taskEntity != null) {
+            taskEntity.setContent(taskRequestServerDTO.getContent());
+            taskRepository.save(taskEntity);
+            return true;
+        }
+        return false;
+    }
 }
