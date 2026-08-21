@@ -1,6 +1,7 @@
 package com.example.task_manager.service;
 
-import com.example.task_manager.dto.TaskDTO;
+import com.example.task_manager.dto.request.server.TaskRequestServerDTO;
+import com.example.task_manager.dto.response.server.TaskResponseServerDTO;
 import com.example.task_manager.entities.TaskEntity;
 import com.example.task_manager.repository.TaskRepository;
 import com.example.task_manager.utils.Mappers;
@@ -19,8 +20,16 @@ public class TaskServiceImpl implements TaskService {
     Mappers mappers;
 
     @Override
-    public TaskDTO findById(int id) {
+    public TaskResponseServerDTO findById(int id) {
         TaskEntity taskEntity = taskRepository.findById(id);
-        return mappers.map(taskEntity, TaskDTO.class);
+        TaskResponseServerDTO taskResponseServerDTO = mappers.map(taskEntity, TaskResponseServerDTO.class);
+        return mappers.map(taskResponseServerDTO, TaskResponseServerDTO.class);
+    }
+
+    @Override
+    public TaskResponseServerDTO createTask(TaskRequestServerDTO taskRequestServerDTO) {
+        TaskEntity taskEntity = mappers.map(taskRequestServerDTO, TaskEntity.class);
+        TaskEntity savedTaskEntity = taskRepository.save(taskEntity);
+        return mappers.map(savedTaskEntity, TaskResponseServerDTO.class);
     }
 }
