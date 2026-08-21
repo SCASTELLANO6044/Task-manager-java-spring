@@ -32,4 +32,9 @@ public class TaskServiceImpl implements TaskService {
         TaskEntity savedTaskEntity = taskRepository.save(taskEntity);
         return mappers.map(savedTaskEntity, TaskResponseServerDTO.class);
     }
+
+    @Override
+    public void deleteTask(int id) {
+        taskRepository.deleteById(id);
+    }
 }

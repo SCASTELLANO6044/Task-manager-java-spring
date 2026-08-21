@@ -30,4 +30,11 @@ public class TaskController {
     public ResponseEntity<TaskResponseServerDTO> createTask(@RequestBody TaskRequestServerDTO taskRequestServerDTO) {
         return new ResponseEntity<>(taskService.createTask(taskRequestServerDTO), HttpStatus.CREATED);
     }
+
+    @Operation(summary = "Delete task")
+    @DeleteMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> deleteTask(@PathVariable String id) {
+        taskService.deleteTask(Integer.parseInt(id));
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

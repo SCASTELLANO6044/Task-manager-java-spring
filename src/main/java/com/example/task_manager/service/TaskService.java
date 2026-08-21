@@ -7,4 +7,5 @@ public interface TaskService {
 
     TaskResponseServerDTO findById(int id);
     TaskResponseServerDTO createTask(TaskRequestServerDTO taskRequestServerDTO);
+    void deleteTask(int id);
 }
