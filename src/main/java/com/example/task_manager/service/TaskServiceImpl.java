@@ -21,7 +21,16 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public TaskResponseServerDTO findById(int id) {
+
+        if (id < 0){
+            throw new IllegalArgumentException("Task ID must be a positive integer");
+        }
+
         TaskEntity taskEntity = taskRepository.findById(id);
+
+        if  (taskEntity == null) {
+            throw new IllegalArgumentException("Task not found");
+        }
         TaskResponseServerDTO taskResponseServerDTO = mappers.map(taskEntity, TaskResponseServerDTO.class);
         return mappers.map(taskResponseServerDTO, TaskResponseServerDTO.class);
     }
