@@ -31,7 +31,7 @@ public class TaskController {
         return new ResponseEntity<>(taskService.createTask(taskRequestServerDTO), HttpStatus.CREATED);
     }
 
-    @Operation(summary = "Create task")
+    @Operation(summary = "Update task")
     @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<TaskResponseServerDTO> updateTask(@RequestBody TaskRequestServerDTO taskRequestServerDTO) {
         Boolean deleted = taskService.updateTask(taskRequestServerDTO);
