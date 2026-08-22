@@ -40,9 +40,6 @@ class TaskServiceUnitTest {
         when(taskRepository.findById(3)).thenReturn(taskEntity);
         when(mappers.map(taskEntity, TaskResponseServerDTO.class)).thenReturn(taskResponseServerDTO);
 
-        // Required only because the service currently maps the response twice.
-        when(mappers.map(taskResponseServerDTO, TaskResponseServerDTO.class)).thenReturn(taskResponseServerDTO);
-
         TaskResponseServerDTO result = taskService.findById(3);
 
         assertNotNull(result);
