@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class TaskServiceTest {
+public class TaskServiceIntegrationTest {
 
     @Autowired
     TaskService taskService;
@@ -29,9 +29,7 @@ public class TaskServiceTest {
     @Order(1)
     @DisplayName("Given missing task ID when find by ID then throw exception")
     void givenMissingTaskId_whenFindById_throwException() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            taskService.findById(999);
-        });
+        assertThrows(IllegalArgumentException.class, () -> taskService.findById(999));
     }
 
     @Test
@@ -49,9 +47,7 @@ public class TaskServiceTest {
     @Order(3)
     @DisplayName("Given an existing task ID when find by ID then return a task")
     void givenNegativeTaskId_whenFindById_throwException() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            taskService.findById(-1);
-        });
+        assertThrows(IllegalArgumentException.class, () -> taskService.findById(-1));
     }
 
 
