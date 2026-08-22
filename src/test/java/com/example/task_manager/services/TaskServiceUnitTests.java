@@ -54,15 +54,14 @@ class TaskServiceUnitTest {
 
     @Test
     void findById_whenTaskDoesNotExist_throwsException() {
+        verifyNoInteractions(mappers);
         when(taskRepository.findById(999)).thenReturn(null);
-
         assertThrows(IllegalArgumentException.class, () -> taskService.findById(999));
     }
 
     @Test
     void findById_whenIdIsNegative_throwsException() {
         assertThrows(IllegalArgumentException.class, () -> taskService.findById(-1));
-
         verifyNoInteractions(taskRepository, mappers);
     }
 }
